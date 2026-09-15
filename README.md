@@ -34,3 +34,21 @@
     #std::cout << "РОМБОВ-" << k1 << " ПАРАЛЛЕЛОГРАММОВ-" << k2 << std::endl;
     #return 0;
 #}
+
+
+
+
+#include <iostream>
+#include <cmath>
+int main()
+{
+	unsigned char  hours = 2;
+	unsigned char minutes = 43;
+	hours = hours % 12;
+	float min_grrrr = minutes * 6;
+	float housr_grrr = (hours * 30) + (minutes * 0.5);
+	float diff = abs(housr_grrr - min_grrrr);
+	float d = (diff > 180) ? 360.0 - diff : diff;
+	printf("diff = %.1f\n", diff);
+	return 0;
+}
