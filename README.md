@@ -52,3 +52,29 @@ int main()
 	printf("diff = %.1f\n", diff);
 	return 0;
 }
+
+
+#include <iostream>
+#include <stdio.h>
+
+int main()
+
+{
+	int r, k;
+	setlocale(LC_ALL, "RUS");
+	printf(" рубли копейки: ");
+	scanf_s("%d %d",&r, &k);
+	unsigned long long money = r * 100 + k;
+	unsigned long long mgr_money = money;
+	int bstep = 0;
+	int s = 0;
+	do {
+		money = money - 29;
+		money = (money % 100) * 100 + (money / 100);
+		money > mgr_money ? (mgr_money = money, bstep = s) : 0;
+		s++;
+	} while (s <= 100);
+	printf("%d\n", bstep);
+	return 0;
+}
+
