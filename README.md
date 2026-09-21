@@ -93,3 +93,30 @@ if (summa >= 29)
     } while (summa >= 29 && summa != nachal);
 printf("%d-%d-%d", nachal, max, optimal_hod);
 }
+#include <stdio.h>
+#include <math.h> 
+#include <locale.h>
+int main() {
+    setlocale(LC_ALL, "Russian"); 
+    int nachal;
+    unsigned short hod = 0, max = 0, optimal_hod = 0, summa; 
+    do 
+    {
+        printf("Введите начальную сумму в копейках  (сумма > 0) : ");
+        scanf_s("%d", &nachal); 
+    } 
+    while (nachal < 0 || nachal >= 10000);
+    summa = nachal;
+    max = summa;
+    if (summa >= 29)
+        do {
+            hod++;
+            summa -= 29;
+            summa = summa % 100 * 100 + summa / 100;
+            if (summa > max) {
+                max = summa;
+                optimal_hod = hod;
+            }
+        } while (summa >= 29 && summa != nachal);
+        printf("%d-%d-%d", nachal, max, optimal_hod);
+}
