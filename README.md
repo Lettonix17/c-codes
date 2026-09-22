@@ -156,3 +156,36 @@ int main() {
         } while (summa >= 29 && summa != nachal);
         printf("%d-%d-%d", nachal, max, optimal_hod);
 }
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+
+    int N;
+    do {
+        printf("Введите число N (от 1 до 1000000): ");
+    } while (scanf("%d", &N) != 1 || N < 1 || N > 1000000);
+
+    int bestP = 1;
+    int bestQ = 1;
+    int minDiff = N;
+
+    for (int Q = 1; Q * Q <= N; Q++) {
+        for (int P = 1; P <= Q; P++) {
+            int sum = P * P + Q * Q;
+            int diff = abs(N - sum);
+            if (diff < minDiff) {
+                minDiff = diff;
+                bestP = P;
+                bestQ = Q;
+            }
+        }
+    }
+
+    printf("P = %d, Q = %d\n", bestP, bestQ);
+
+    return 0;
+}
