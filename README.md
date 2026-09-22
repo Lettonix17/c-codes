@@ -34,7 +34,43 @@
     #std::cout << "РОМБОВ-" << k1 << " ПАРАЛЛЕЛОГРАММОВ-" << k2 << std::endl;
     #return 0;
 #}
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <math.h>
+#include <locale.h>
+int main() {
+    int N;
+    setlocale(LC_ALL, "Rus");
+    do {
+        printf("Введите число N (от 1 до 1000000): ");
+        scanf("%d", &N) != 1;
+    } while (N < 1);
+        
 
+        int bestP = 1;
+        int bestQ = 1;
+        int minDiff = N;
+
+        for (int Q = 1; Q * Q <= N; Q++) {
+
+            for (int P = 1; P <= Q; P++) {
+                int sum = P * P + Q * Q;
+                int diff = abs(N - sum);
+
+
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    bestP = P;
+                    bestQ = Q;
+                }
+            }
+        }
+    }
+        printf("P = %d, Q = %d\n", bestP, bestQ);
+
+        return 0;
+    }
+}
 
 
 
