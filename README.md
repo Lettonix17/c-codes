@@ -222,3 +222,46 @@ int main() {
     printf("РОМБОВ - %d, ПАРАЛЛЕЛОГРАММОВ - %d\n", k1, k2);
     return 0;
 }
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <math.h>
+#include <locale.h>
+double fnm(double x1, double x2, double y1, double y2) {
+    return sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+}
+int main() {
+    setlocale(LC_ALL, "Russian");
+    int n;
+    double p;
+    int K = 0;
+    printf("Введите число треугольников n: ");
+    if (scanf("%d", &n) != 1 || n <= 0) {
+        printf("Некорректное значение n.\n");
+        return 1;
+    }
+    printf("Ввести периметр P: ");
+    scanf("%lf", &p);
+    double x1, y1, x2, y2, x3, y3;
+    for (int i = 0; i < n; i++) {
+        printf("\nТреугольник %d:\n", i + 1);
+        printf("Координаты первой вершины (x y): ");
+        scanf("%lf %lf", &x1, &y1);
+
+        printf("Координаты второй вершины (x y): ");
+        scanf("%lf %lf", &x2, &y2);
+
+        printf("Координаты третьей вершины (x y): ");
+        scanf("%lf %lf", &x3, &y3);
+        double a = fnm(x1, x2, y1, y2);
+        double b = fnm(x1, x3, y1, y3);
+        double c = fnm(x2, x3, y2, y3);
+        if ((a + b +  c > p) &&
+            ((a * a + b * b < c * c) || (b * b + c * c < a * a) || (a * a + c * c < b * b))) {
+            K++;
+        }
+    }
+    printf("\nЧисло треугольников, удовлетворяющих условию: %d\n", K);
+    return 0;
+}
