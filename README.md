@@ -189,3 +189,36 @@ int main() {
 
     return 0;
 }
+
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+int main() {
+    setlocale(LC_ALL, "Russian");
+    int n;
+    printf("Введите количество четырехугольников: ");
+    if (scanf("%d", &n) != 1) return 1; 
+    int k1 = 0;
+    int k2 = 0; 
+    for (int i = 1; i <= n; ++i) {
+        double a, b, c, d;
+        printf("Введите стороны %d-го четырехугольника: ", i);
+
+        
+        if (scanf("%lf %lf %lf %lf", &a, &b, &c, &d) != 4) {
+            printf("Ошибка ввода!\n");
+            return 1;
+        }
+        if (a == b && b == c && c == d) {
+            k1 = k1 + 1;
+        }
+        else if (a == c && b == d) {
+            k2 = k2 + 1;
+        }
+    }
+    printf("РОМБОВ - %d, ПАРАЛЛЕЛОГРАММОВ - %d\n", k1, k2);
+    return 0;
+}
