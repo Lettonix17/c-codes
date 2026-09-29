@@ -412,14 +412,11 @@ int main() {
 
     return 0;
 }
+
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <math.h>
 #include <locale.h>
-
-double fnm(double x1, double x2, double y1, double y2) {
-    return sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
-}
 
 int main() {
     setlocale(LC_ALL, "Russian");
@@ -427,7 +424,6 @@ int main() {
     double p;
     int K = 0;
 
-    // Цикл do-while будет запрашивать число, пока оно не станет больше 0
     do {
         printf("Введите число треугольников n (больше 0): ");
         scanf("%d", &n);
@@ -437,7 +433,6 @@ int main() {
         }
     } while (n <= 0);
 
-    // Аналогичный цикл do-while для проверки периметра
     do {
         printf("Ввести периметр P (больше 0): ");
         scanf("%lf", &p);
@@ -459,11 +454,11 @@ int main() {
         printf("Координаты третьей вершины (x y): ");
         scanf("%lf %lf", &x3, &y3);
         
-        double a = fnm(x1, x2, y1, y2);
-        double b = fnm(x1, x3, y1, y3);
-        double c = fnm(x2, x3, y2, y3);
+        // Вычисляем длины сторон напрямую, используя формулу расстояния между точками
+        double a = sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+        double b = sqrt((x3 - x1) * (x3 - x1) + (y3 - y1) * (y3 - y1));
+        double c = sqrt((x3 - x2) * (x3 - x2) + (y3 - y2) * (y3 - y2));
         
-        // Проверка условия
         if ((a + b + c > p) &&
             ((a * a + b * b < c * c) || (b * b + c * c < a * a) || (a * a + c * c < b * b))) {
             K++;
