@@ -469,3 +469,59 @@ int main() {
 
     return 0;
 }
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <math.h>
+#include <locale.h>
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+    int n;
+    double p;
+    int K = 0;
+
+    do {
+        printf("Введите число треугольников n (больше 0): ");
+        scanf("%d", &n);
+        
+        if (n <= 0) {
+            printf("Ошибка! Число треугольников не может быть 0 или меньше. Введите заново.\n\n");
+        }
+    } while (n <= 0);
+
+    do {
+        printf("Ввести периметр P (больше 0): ");
+        scanf("%lf", &p);
+        
+        if (p <= 0) {
+            printf("Ошибка! Периметр должен быть положительным числом. Введите заново.\n\n");
+        }
+    } while (p <= 0);
+
+    double x1, y1, x2, y2, x3, y3;
+    for (int i = 0; i < n; i++) {
+        printf("\nТреугольник %d:\n", i + 1);
+        printf("Координаты первой вершины (x y): ");
+        scanf("%lf %lf", &x1, &y1);
+
+        printf("Координаты второй вершины (x y): ");
+        scanf("%lf %lf", &x2, &y2);
+
+        printf("Координаты третьей вершины (x y): ");
+        scanf("%lf %lf", &x3, &y3);
+        
+        // Вычисляем длины сторон напрямую, используя формулу расстояния между точками
+        double a = sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+        double b = sqrt((x3 - x1) * (x3 - x1) + (y3 - y1) * (y3 - y1));
+        double c = sqrt((x3 - x2) * (x3 - x2) + (y3 - y2) * (y3 - y2));
+        
+        if ((a + b + c > p) &&
+            ((a * a + b * b < c * c) || (b * b + c * c < a * a) || (a * a + c * c < b * b))) {
+            K++;
+        }
+    }
+    
+    printf("\nЧисло треугольников, удовлетворяющих условию: %d\n", K);
+
+    return 0;
+}
