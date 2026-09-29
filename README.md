@@ -412,3 +412,65 @@ int main() {
 
     return 0;
 }
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <math.h>
+#include <locale.h>
+
+double fnm(double x1, double x2, double y1, double y2) {
+    return sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+}
+
+int main() {
+    setlocale(LC_ALL, "Russian");
+    int n;
+    double p;
+    int K = 0;
+
+    // Цикл do-while будет запрашивать число, пока оно не станет больше 0
+    do {
+        printf("Введите число треугольников n (больше 0): ");
+        scanf("%d", &n);
+        
+        if (n <= 0) {
+            printf("Ошибка! Число треугольников не может быть 0 или меньше. Введите заново.\n\n");
+        }
+    } while (n <= 0);
+
+    // Аналогичный цикл do-while для проверки периметра
+    do {
+        printf("Ввести периметр P (больше 0): ");
+        scanf("%lf", &p);
+        
+        if (p <= 0) {
+            printf("Ошибка! Периметр должен быть положительным числом. Введите заново.\n\n");
+        }
+    } while (p <= 0);
+
+    double x1, y1, x2, y2, x3, y3;
+    for (int i = 0; i < n; i++) {
+        printf("\nТреугольник %d:\n", i + 1);
+        printf("Координаты первой вершины (x y): ");
+        scanf("%lf %lf", &x1, &y1);
+
+        printf("Координаты второй вершины (x y): ");
+        scanf("%lf %lf", &x2, &y2);
+
+        printf("Координаты третьей вершины (x y): ");
+        scanf("%lf %lf", &x3, &y3);
+        
+        double a = fnm(x1, x2, y1, y2);
+        double b = fnm(x1, x3, y1, y3);
+        double c = fnm(x2, x3, y2, y3);
+        
+        // Проверка условия
+        if ((a + b + c > p) &&
+            ((a * a + b * b < c * c) || (b * b + c * c < a * a) || (a * a + c * c < b * b))) {
+            K++;
+        }
+    }
+    
+    printf("\nЧисло треугольников, удовлетворяющих условию: %d\n", K);
+
+    return 0;
+}
