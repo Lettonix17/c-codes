@@ -12,28 +12,6 @@
 #}
 
 Задача с 3 лабы (18)
-#include <iostream>
-#int main() {
-    #int n;
-    #std::cout << "Введите количество четырехугольников: ";
-    #std::cin >> n;
-    #int k1 = 0;
-    #int k2 = 0;
-    #for (int i = 1; i <= n; ++i) {
-        #double a, b, c, d;
-        #std::cout << "Введите стороны " << i << "- го четырехугольника: ";
-        #std::cin >> a >> b >> c >> d;
-        
-        #if (a == c && b == d && a == b) {
-            #k1 = k1 + 1;
-        #} else if (a == c && b == d) {
-            #k2 = k2 + 1;
-        #}
-    #}
-    
-    #std::cout << "РОМБОВ-" << k1 << " ПАРАЛЛЕЛОГРАММОВ-" << k2 << std::endl;
-    #return 0;
-#}
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <math.h>
@@ -524,4 +502,23 @@ int main() {
     printf("\nЧисло треугольников, удовлетворяющих условию: %d\n", K);
 
     return 0;
+}
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+    double s;
+    printf("Введите число S: ");
+    if (scanf("%lf", &s) != 1) {
+        printf("Ошибка ввода!\n");
+        return 1;
+    }
+    if (s >= 12) {
+        printf("Нет решения");
+        return 0;
+    }
+    int n = 1;
+    double chislitel = 1.0;
+    double znamenatel = 1.0;
+    double summa = 0;
 }
