@@ -535,20 +535,59 @@ int main() {
         printf("Сумма этой последовательности никогда не превысит 12.\n");
         printf("Для заданного S = %.2lf решения не существует.\n", S);
         return 0;
-    double sum = 0.0;
-    int n = 1;
-    double power_of_two = 1.0;
-    while (1) {
+    }
+    double sum;
+    int n;
+    double power_of_two;
+    sum = 0.0;
+    n = 1;
+    power_of_two = 1.0;
+
+    while (sum <= S) {
         double term = (n * n) / power_of_two;
         sum += term;
-        if (sum > S) {
-            printf("Минимальное количество элементов: %d\n", n);
-            printf("Достигнутая сумма: %lf\n", sum);
-            break;
+        
+        if (sum <= S) {
+            n++;
+            power_of_two *= 2.0;
         }
-        n++;
-        power_of_two *= 2.0; 
     }
 
+    printf("\n--- Цикл while ---\n");
+    printf("Минимальное количество элементов: %d\n", n);
+    printf("Достигнутая сумма: %lf\n", sum);
+    sum = 0.0;
+    n = 1;
+    power_of_two = 1.0;
+
+    do {
+        double term = (n * n) / power_of_two;
+        sum += term;
+        
+        if (sum <= S) {
+            n++;
+            power_of_two *= 2.0;
+        }
+    } while (sum <= S);
+
+    printf("\n--- Цикл do-while ---\n");
+    printf("Минимальное количество элементов: %d\n", n);
+    printf("Достигнутая сумма: %lf\n", sum);
+    sum = 0.0;
+    n = 1;
+    power_of_two = 1.0;
+
+    for ( ; sum <= S; ) {
+        double term = (n * n) / power_of_two;
+        sum += term;
+        
+        if (sum <= S) {
+            n++;
+            power_of_two *= 2.0;
+        }
+    }
+    printf("\n--- Цикл for ---\n");
+    printf("Минимальное количество элементов: %d\n", n);
+    printf("Достигнутая сумма: %lf\n", sum);
     return 0;
 }
